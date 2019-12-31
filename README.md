@@ -4,12 +4,13 @@ Python Carplay library for the "Autobox" dongles
 
 These are readily available from Amazon, but are also available from cheaper sources. The one I got was labelled "Carlinkit" here: https://www.aliexpress.com/item/32829019768.html
 
-There may be multiple versions, possibly including whether or not the dongle supports wireless CarPlay, but I haven't investigated.
+They're provided with an Android APK (and if you hunt around online, a Windows CE version of the 'player' application also exists).
 
 ## Interesting observations
 
 * During boot, a bunch of files are copied to the dongle, with a target path beginning with `/tmp/` and occasionally `/etc/`. This implies the dongle itself is running something like Linux.
 * Some files are also written to change settings, such as night mode, left or right hand drive, and "charge mode" for the USB port.
+* There may be multiple versions, possibly including whether or not the dongle supports wireless CarPlay, but I haven't investigated. I suspect the one I have doesn't support wireless CarPlay because there's a point at which the dongle can indicate support, optionally requesting a driver is uploaded, and mine never sends the message.
 
 # Setup
 
@@ -20,6 +21,8 @@ Simply run:
 ./downloadassets.sh
 ```
 from the repository root.
+
+This script simply uses the URL that was printed on the front of the box my dongle came in.
 
 ## Python environment
 
