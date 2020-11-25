@@ -38,6 +38,9 @@ class Message:
         except KeyError:
             upd=Unknown(self.type)
             upd._setdata(bodydata)
+        except struct.error:
+            upd=Unknown(self.type)
+            upd._setdata(bodydata)    
         return upd
     
     def __init__(self, type=-1):
@@ -149,7 +152,19 @@ class CarPlay(Message):
     
     class Value(IntEnum):
         Invalid = 0
+        BtnSiri = 5
         CarMicrophone = 7
+        BtnLeft = 100
+        BtnRight = 101
+        BtnSelectDown = 104
+        BtnSelectUp = 105 
+        BtnBack = 106
+        BtnDown = 114
+        BtnHome = 200
+        BtnPlay = 201
+        BtnPause = 202
+        BtnNextTrack = 204
+        BtnPrevTrack = 205
         SupportWifi = 1000
         SupportWifiNeedKo = 1012
     
@@ -350,7 +365,7 @@ def _copy_assets(ar):
     return [SendFile(f"/tmp/{x}", get(f"assets/{x}")) for x in ar]
 
 # These files were included in the original APK, and are easily extracted. They're kind of interesting and probably warrant investigation.
-_assets = ["adb", "adb.pub", "helloworld0", "helloworld1", "helloworld2", "libby265n.so", "libby265n_x86.so", "libscreencap40.so", "libscreencap41.so", "libscreencap43.so", "libscreencap50.so", "libscreencap50_x86.so", "libscreencap442.so", "libscreencap422.so", "mirrorcoper.apk", "libscreencap60.so", "libscreencap70.so", "libscreencap71.so", "libscreencap80.so", "libscreencap90.so", "libscreencap100.so", "HWTouch.dex"]
+_assets = ["adb", "adb.pub", "helloworld0", "helloworld1", "helloworld2", "libby265n.so", "libby265n_x86.so", "libscreencap40.so", "libscreencap41.so", "libscreencap43.so", "libscreencap50.so", "libscreencap50_x86.so", "libscreencap442.so", "libscreencap422.so", "mirrorcoper.apk", "libscreencap60.so", "libscreencap70.so", "libscreencap71.so", "libscreencap80.so", "libscreencap90.so", "HWTouch.dex"]
 
 opened_info = [
    ManufacturerInfo(0, 0),
